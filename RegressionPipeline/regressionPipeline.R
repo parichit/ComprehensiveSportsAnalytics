@@ -4,26 +4,21 @@
 
 
   # args = commandArgs(trailingOnly=TRUE)
-  # 
-  # if (length(args) < 5){
+  
+  # if (length(args) < 3){
   #   print("Please mention which prediction you want to make?")
-  #   print("Choices: real, imaginary")
   #   stop(exiting)
   # }
-  # 
+  
   # already_running = args[1]
   # result_dir_name = args[2]
   # input_file_name = args[3]
-  # upsample = args[4]
-  # typePred = args[5]
   
   
   already_running = "no"
   result_dir_name = "test_results"
   input_file_name = "NBA_MVP_clean.csv"
-  upsample = "FALSE"
-  typePred = ""
-  
+
   
   out_dir = file.path(base_path, result_dir_name)
   
@@ -60,6 +55,7 @@
   print("###################################")
   
   
+
   source("DataIO.R")
   
   out <- load_data(file.path(base_path, "data", input_file_name))
@@ -67,14 +63,14 @@
   test_data <- out[[2]]
 
 
-  source("runModels.R")
 
+  source("runModels.R")
 
   # Set parameters
   time_limit = 1000
-  number <- 3
-  repeats <- 3
-  num_top_models = 5
+  number <- 5
+  repeats <- 5
+  num_top_models = 0
 
   
   print("###################################")

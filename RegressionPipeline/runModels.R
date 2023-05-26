@@ -29,7 +29,7 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
                           repeats = repeats, 
                           savePredictions = "final",
                           index = createResample(train_data$target, number*repeats), 
-                          allowParallel = FALSE)
+                          allowParallel = TRUE)
   
 
     train_out = file.path(output_path, train_out_file)
@@ -37,20 +37,20 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
     res_stats = file.path(output_path, stat_file)
   
   
-  
   selected_Models = availableModels
   
   if (num_top_models != 0){
     selected_Models = selected_Models[(length(selected_Models)-num_top_models):length(selected_Models)]
   }
- 
-  
   
   for(i in 1:length(selected_Models))
+  
   {
     
     print(paste("Running", selected_Models[i]))
-    
+
+        tic()
+
         result <- tryCatch(
         {
           
@@ -60,7 +60,7 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
                     trControl = control)
             }, timeout = time_limit)
         },
-        
+
         TimeoutException = function(ex) {
           result = "timeout"
           print(paste("Timeout for ", selected_Models[i]))
@@ -71,6 +71,9 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
           result =  "error"
         }
       )
+
+      endTime <- toc()
+
     
     if (length(result) > 1){
       
@@ -109,6 +112,18 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
     } else if (length(result) == 1){
       failCounter = failCounter + 1
     }
+
+    # Record Time utilization of the model
+    TotalTime = endTime$toc - endTime$tic
+    temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60))
+
+    if (!file.exists("NBA_MVP_time.csv")){
+        write.table(temp, file="NBA_MVP_time.csv", row.names = FALSE, sep= ",", quote = FALSE)
+    } else{
+      write.table(temp, file="NBA_MVP_time.csv", row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
+                    col.names = FALSE)
+      }
+
   }
   
   if (length(failCounter) == length(selected_Models)){
