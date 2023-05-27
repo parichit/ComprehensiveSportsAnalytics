@@ -1,7 +1,4 @@
-#@ Dr Hasan Kurban
-#@IUB, Computer Science Department
-
-# Modified by Parichit Sharma, please contact hakurban@gmail.com or parishar@iu.edu for any questions
+# Created by Parichit Sharma, please contact parishar@iu.edu for any questions
 #@IUB, Computer Science Department
 
 
@@ -74,10 +71,7 @@ if (length(missing_libs) > 1){
     print("##########################")
     print("Attempting to install missing packages")
     print("##########################")
-
-    
-    # install.packages(missing_libs, dependencies = TRUE, Ncpus = 2)
-    
+        
     for (i in missing_libs){
       if (!(i %in% alreadyInstalled)){
         install.packages(i, dependencies = c("Imports", "Depends", "Suggests"))
@@ -106,7 +100,6 @@ if (length(missing_libs) > 1){
     
     print(paste("Failed to install", length(failedPackage), "packages"))
     print(paste("Failed packages account for", length(failedModels), "models"))
-
 }
 
 else{
@@ -119,5 +112,4 @@ return(unique(successModels))
 
 }
 
-
-# install_missing_packages
+# install_missing_packages(file.path("modelList.txt"))

@@ -12,7 +12,7 @@ require(dplyr)
 
 
 runModels <- function(selected_Models, train_data, test_data, time_limit, number, repeats, num_top_models,
-                      type_pred, output_path, train_out_file, test_out_file, stat_file){
+                      type_pred, output_path, train_out_file, test_out_file, stat_file, model_time_file_name){
   
   train_out = ""
   test_out = ""
@@ -29,7 +29,7 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
                           repeats = repeats, 
                           savePredictions = "final",
                           index = createResample(train_data$target, number*repeats), 
-                          allowParallel = TRUE)
+                          allowParallel = FALSE)
   
 
     train_out = file.path(output_path, train_out_file)
@@ -115,12 +115,16 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
 
     # Record Time utilization of the model
     TotalTime = endTime$toc - endTime$tic
-    temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60))
-
-    if (!file.exists("NBA_MVP_time.csv")){
-        write.table(temp, file="NBA_MVP_time.csv", row.names = FALSE, sep= ",", quote = FALSE)
+    if (length(result) > 1){
+      comm = "success"
+    } else if(length(result) == 1){
+      comm = result
+    }
+    temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60), Status=comm)
+    if (!file.exists(model_time_file_name)){
+        write.table(temp, file=model_time_file_name, row.names = FALSE, sep= ",", quote = FALSE)
     } else{
-      write.table(temp, file="NBA_MVP_time.csv", row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
+      write.table(temp, file=model_time_file_name, row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
                     col.names = FALSE)
       }
 
@@ -132,7 +136,7 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
   } else if(length(failCounter) < length(selected_Models)){
     
     
-    # Save summary statistics of k-fold cross-validation 
+    # Save summary statistics for k-fold cross-validation 
     mae_stat <- as.data.frame(allresultsDF %>% dplyr::select(MAE, Model) %>% group_by(Model) %>%
                                 summarize(min = min(MAE), max = max(MAE), median = median(MAE), 
                                           mean = mean(MAE), sd = sd(MAE)) %>%

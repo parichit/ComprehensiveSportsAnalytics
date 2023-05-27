@@ -1,4 +1,3 @@
-gam,gamSpline
 kernlab,gaussprLinear,gaussprPoly,gaussprRadial,krlsRadial,rvmLinear,rvmPoly,rvmRadial,svmBoundrangeString,svmExpoString,svmLinear,svmPoly,svmRadial,svmRadialCost,svmRadialSigma,svmSpectrumString
 h2o,gbm,gbm_h2o,glmnet,glmnet_h2o
 MASS,glm.nb,glmStepAIC,lmStepAIC,rlm
