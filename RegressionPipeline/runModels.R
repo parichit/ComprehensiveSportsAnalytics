@@ -12,7 +12,7 @@ require(dplyr)
 
 
 runModels <- function(selected_Models, train_data, test_data, time_limit, number, repeats, num_top_models,
-                      type_pred, output_path, train_out_file, test_out_file, stat_file){
+                      type_pred, output_path, train_out_file, test_out_file, stat_file, model_time_file_name){
   
   train_out = ""
   test_out = ""
@@ -51,6 +51,8 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
     
     print(paste("Running", selected_Models[i]))
     
+        tic()
+    
         result <- tryCatch(
         {
           
@@ -71,6 +73,8 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
           result =  "error"
         }
       )
+        
+      endTime <- toc()
     
     if (length(result) > 1){
       
@@ -105,6 +109,18 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
         write.table(resultsTestDF, file=test_out, row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
                     col.names = FALSE)
       }
+      
+      TotalTime = endTime$toc = endTime$tic
+      temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60))
+      if (!file.exists(model_time_file_name)){
+        write.table(temp, file=model_time_file_name, row.names = FALSE, sep= ",", quote = FALSE)
+      }
+      else{
+        write.table(temp, file=model_time_file_name, row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
+                    col.names = FALSE)
+      }
+      
+      
       
     } else if (length(result) == 1){
       failCounter = failCounter + 1

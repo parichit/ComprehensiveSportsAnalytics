@@ -5,7 +5,7 @@
 
   # args = commandArgs(trailingOnly=TRUE)
   # 
-  # if (length(args) < 5){
+  # if (length(args) < 4){
   #   print("Please mention which prediction you want to make?")
   #   print("Choices: real, imaginary")
   #   stop(exiting)
@@ -14,15 +14,14 @@
   # already_running = args[1]
   # result_dir_name = args[2]
   # input_file_name = args[3]
-  # upsample = args[4]
+  # model_time_file_name = args[4]
   # typePred = args[5]
   
   
   already_running = "no"
   result_dir_name = "test_results"
-  input_file_name = "NBA_MVP_clean.csv"
-  upsample = "FALSE"
-  typePred = ""
+  input_file_name = "NBA_Defensive_clean.csv"
+  model_time_file_name = "NBA_DEF_time.csv"
   
   
   out_dir = file.path(base_path, result_dir_name)
@@ -73,8 +72,8 @@
   # Set parameters
   time_limit = 1000
   number <- 3
-  repeats <- 3
-  num_top_models = 5
+  repeats <- 2
+  num_top_models = 1
 
   
   print("###################################")
@@ -90,7 +89,8 @@
   testFilePath = file.path(out_dir, test_out_file)
   
   runModels(availableModels, train_data, test_data, time_limit, 
-            number, repeats, num_top_models, typePred, out_dir, train_out_file, test_out_file, stat_file)
+            number, repeats, num_top_models, typePred, out_dir, train_out_file, test_out_file, 
+            stat_file, model_time_file_name)
   
   trainFilePath = file.path(out_dir, train_out_file)
   testFilePath = file.path(out_dir, test_out_file)
