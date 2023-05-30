@@ -3,30 +3,28 @@
   base_path = dirname(path)
 
 
-  # args = commandArgs(trailingOnly=TRUE)
-  # 
-  # if (length(args) < 4){
-  #   print("Please mention which prediction you want to make?")
-  #   print("Choices: real, imaginary")
-  #   stop(exiting)
-  # }
-  # 
-  # already_running = args[1]
-  # result_dir_name = args[2]
-  # input_file_name = args[3]
-  # model_time_file_name = args[4]
-  # typePred = args[5]
+  args = commandArgs(trailingOnly=TRUE)
+
+  if (length(args) < 4){
+    print("Please mention which prediction you want to make?")
+    print("Choices: real, imaginary")
+    stop(exiting)
+  }
+
+  already_running = args[1]
+  result_dir_name = args[2]
+  input_file_name = args[3]
+  model_time_file_name = args[4]
   
   
-  already_running = "no"
-  result_dir_name = "test_results"
-  input_file_name = "NBA_Defensive_clean.csv"
-  model_time_file_name = "NBA_DEF_time.csv"
-  
+  # already_running = "no"
+  # result_dir_name = "test_results"
+  # input_file_name = "NBA_Defensive_clean.csv"
+  # model_time_file_name = "NBA_DEF_time.csv"
   
   out_dir = file.path(base_path, result_dir_name)
   
-  
+
   if ( (dir.exists(out_dir)) && (already_running == "no") ){
     time_stamp = format(Sys.time(), "%m_%d_%H-%m-%S")
     new_name = paste(out_dir, "_old_", time_stamp, sep="")
@@ -35,7 +33,6 @@
   } else if ( !(dir.exists(out_dir)) && (already_running == "no") ){
     dir.create(out_dir)
   }
-  
   
   
   print(paste("Started execution on:", Sys.time()))
@@ -59,6 +56,7 @@
   print("###################################")
   
   
+
   source("DataIO.R")
   
   out <- load_data(file.path(base_path, "data", input_file_name))
@@ -66,14 +64,14 @@
   test_data <- out[[2]]
 
 
-  source("runModels.R")
 
+  source("runModels.R")
 
   # Set parameters
   time_limit = 1000
-  number <- 3
-  repeats <- 2
-  num_top_models = 1
+  number <- 5
+  repeats <- 5
+  num_top_models = 0
 
   
   print("###################################")
@@ -88,10 +86,10 @@
   trainFilePath = file.path(out_dir, train_out_file)
   testFilePath = file.path(out_dir, test_out_file)
   
-  runModels(availableModels, train_data, test_data, time_limit, 
-            number, repeats, num_top_models, typePred, out_dir, train_out_file, test_out_file, 
-            stat_file, model_time_file_name)
-  
+  runModels(availableModels, train_data, test_data, time_limit, number, repeats, 
+            um_top_models, typePred, out_dir, train_out_file, 
+            test_out_file, stat_file, model_time_file_name)
+
   trainFilePath = file.path(out_dir, train_out_file)
   testFilePath = file.path(out_dir, test_out_file)
   
