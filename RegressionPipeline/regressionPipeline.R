@@ -21,7 +21,6 @@
   # result_dir_name = "test_results"
   # input_file_name = "NBA_Defensive_clean.csv"
   # model_time_file_name = "NBA_DEF_time.csv"
-
   
   out_dir = file.path(base_path, result_dir_name)
   
@@ -87,10 +86,10 @@
   trainFilePath = file.path(out_dir, train_out_file)
   testFilePath = file.path(out_dir, test_out_file)
   
-  runModels(availableModels, train_data, test_data, time_limit, 
-            number, repeats, num_top_models, typePred, out_dir, train_out_file, 
+  runModels(availableModels, train_data, test_data, time_limit, number, repeats, 
+            um_top_models, typePred, out_dir, train_out_file, 
             test_out_file, stat_file, model_time_file_name)
-  
+
   trainFilePath = file.path(out_dir, train_out_file)
   testFilePath = file.path(out_dir, test_out_file)
   
