@@ -47,18 +47,11 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
   
   for(i in 1:length(selected_Models))
   
-  {
+    {
     
     print(paste("Running", selected_Models[i]))
-<<<<<<< HEAD
-    
-        tic()
-    
-=======
 
         tic()
-
->>>>>>> 398e8684b98ac79a8ad0a2c6bf612256344bbd9d
         result <- tryCatch(
         {
           
@@ -79,15 +72,9 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
           result =  "error"
         }
       )
-<<<<<<< HEAD
-        
-      endTime <- toc()
-=======
+ 
+    endTime <- toc()
 
-      endTime <- toc()
-
->>>>>>> 398e8684b98ac79a8ad0a2c6bf612256344bbd9d
-    
     if (length(result) > 1){
       
       resultsDF <- as.data.frame(result$resample)

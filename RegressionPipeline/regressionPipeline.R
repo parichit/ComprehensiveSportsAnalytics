@@ -87,7 +87,7 @@
   testFilePath = file.path(out_dir, test_out_file)
   
   runModels(availableModels, train_data, test_data, time_limit, number, repeats, 
-            um_top_models, typePred, out_dir, train_out_file, 
+            num_top_models, typePred, out_dir, train_out_file, 
             test_out_file, stat_file, model_time_file_name)
 
   trainFilePath = file.path(out_dir, train_out_file)
