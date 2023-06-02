@@ -109,14 +109,20 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
                     col.names = FALSE)
       }
       
+      
       TotalTime = endTime$toc = endTime$tic
-      temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60))
-      if (!file.exists(model_time_file_name)){
-        write.table(temp, file=model_time_file_name, row.names = FALSE, sep= ",", quote = FALSE)
-      }
-      else{
-        write.table(temp, file=model_time_file_name, row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
-                    col.names = FALSE)
+      
+      if (TotalTime > 0) {
+
+        temp = data.frame(Model=selected_Models[i], Time1=TotalTime, Time2=(TotalTime/60))
+
+            if (!file.exists(model_time_file_name)){
+              write.table(temp, file=model_time_file_name, row.names = FALSE, sep= ",", quote = FALSE)
+            }
+            else{
+              write.table(temp, file=model_time_file_name, row.names = FALSE, append = TRUE, sep = ",", quote = FALSE, 
+                          col.names = FALSE)
+            }
       }
       
       
