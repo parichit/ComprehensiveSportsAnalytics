@@ -8,13 +8,13 @@ source("plotResults.R")
 # Set plot label and size parameters
 plot_title_size = 14
 subplot_title_size = 13
-axis_label_size = 10
+axis_label_size = 12
 axis_tick_size = 11
 legend_size = 3
 legend_title_color = "Black"
 
 
-drawPlots <- function(trainData1, testData1, typeData, out_dir, out_file, num_top) {
+drawPlots <- function(trainData1, testData1, out_dir, out_file, num_top) {
   
   outFileName = ""
   outFilePath = file.path(out_dir, out_file)
@@ -85,7 +85,7 @@ drawPlots <- function(trainData1, testData1, typeData, out_dir, out_file, num_to
   p4 <- out[[2]]
   
   
-  title = paste("Classification performance of top models on", typeData, " data", sep="")
+  title = paste("Classification performance of top models")
   grid_title <- textGrob(title, gp = gpar(fontsize = plot_title_size, fontface = 'bold'))
   
   
@@ -99,16 +99,14 @@ drawPlots <- function(trainData1, testData1, typeData, out_dir, out_file, num_to
 }
 
 
-# trainData1 <- read.csv2(file = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/TIMP_Classification/debrujin_runs/train_results.csv",
+# trainData1 <- read.csv2(file = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/ComprehensiveSportsAnalytics/NBA_Playoffs/train_results.csv",
 #                        stringsAsFactors = FALSE, sep=",")
 # 
-# testData1 <- read.csv2(file = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/TIMP_Classification/debrujin_runs/test_results.csv",
+# testData1 <- read.csv2(file = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/ComprehensiveSportsAnalytics/NBA_Playoffs/test_results.csv",
 #                       stringsAsFactors = FALSE, sep=",")
-
-# out_dir = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/TIMP_Classification/debrujin_runs"
 # 
-# # out_dir = getwd()
-# drawPlots(trainData1, testData1, trainData2, testData2, out_dir, "Timp_.png", 10)
+# out_dir = "/Users/schmuck/Library/CloudStorage/OneDrive-IndianaUniversity/PhD/ComprehensiveSportsAnalytics/NBA_Playoffs/"
+# drawPlots(trainData1, testData1, out_dir, "Playoffs.png", 20)
 
 
 

@@ -4,8 +4,8 @@ library(ggplot2)
 library(tidyr)
 library(reshape2)
 
-real_comp_best_models = c("ranger", "kknn", "xgbLinear")
-imag_comp_best_models = c("Rborist", "RRF")
+
+best_models = c("loclda")
 
 run_ensemble <- function(pred_type, train_data, number, repeats){
 

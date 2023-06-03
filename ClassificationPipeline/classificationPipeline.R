@@ -3,26 +3,26 @@ path = setwd(file.path(path))
 base_path = dirname(path)
 
 
-args = commandArgs(trailingOnly=TRUE)
+# args = commandArgs(trailingOnly=TRUE)
+# 
+# 
+# if (length(args) < 4){
+#   print("Expects at-least 4 arguments, as follows:")
+#   print("if the program is already running: yes/no")
+#   print("Name of the outut directory: my_out_dir")
+#   print("Name of the input file (in this case, it's fixes): NBA_Playoffs.csv")
+#   print()
+#   print("Here is a sample run (you can copy and paste it in the terminal directly to run the program)")
+#   print("Rscript classificationPipeline.R no test_output NBA_Playoffs.csv")
+#   stop(exiting)
+# }
 
 
-if (length(args) < 4){
-  print("Expects at-least 4 arguments, as follows:")
-  print("if the program is already running: yes/no")
-  print("Name of the outut directory: my_out_dir")
-  print("Name of the input file (in this case, it's fixes): NBA_Playoffs.csv")
-  print()
-  print("Here is a sample run (you can copy and paste it in the terminal directly to run the program)")
-  print("Rscript classificationPipeline.R no test_output NBA_Playoffs.csv")
-  stop(exiting)
-}
 
-
-
-# already_running = "no"
-# result_dir_name = "test_results"
-# input_file_name = "NBA_Playoffs.csv"
-# model_time_file_name = "NBA_playoffs_time.csv"
+already_running = "no"
+result_dir_name = "test_results"
+input_file_name = "NBA_Playoffs.csv"
+model_time_file_name = "NBA_playoffs_time.csv"
 
 
 
