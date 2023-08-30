@@ -1,0 +1,135 @@
+nohup: ignoring input
+[1] "/nfs/nfs8/home/scratch/parishar/ComprehensiveSportsAnalytics/with_TC"
+[1] "Started execution on: 2023-08-30 03:51:46"
+[1] "###################################"
+[1] "1 Install packages"
+[1] "###################################"
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+
+Attaching package: ‘gridExtra’
+
+The following object is masked from ‘package:dplyr’:
+
+    combine
+
+[1] "Total classification models:  141 Number of required libraries: 42 Number of missing libraries:  0"
+[1] "No missing libraries found"
+[1] "42 required libraries already installed"
+[1] "Total Models: 141"
+[1] "###################################"
+[1] "2 READ/COMBINE DATA"
+[1] "###################################"
+Loading required package: readxl
+Loading required package: stringr
+Loading required package: caret
+Loading required package: lattice
+Loaded ROSE 0.0-4
+
+
+False  True 
+  812   791 
+[1] "Data read-in successfully"
+[1] "Rows: 1603  Cols: 23"
+Loading required package: tidyverse
+── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ forcats   1.0.0     ✔ readr     2.1.4
+✔ lubridate 1.9.2     ✔ tibble    3.2.1
+✔ purrr     1.0.1     ✔ tidyr     1.3.0
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ gridExtra::combine() masks dplyr::combine()
+✖ tidyr::extract()     masks magrittr::extract()
+✖ dplyr::filter()      masks stats::filter()
+✖ dplyr::lag()         masks stats::lag()
+✖ purrr::lift()        masks caret::lift()
+✖ purrr::set_names()   masks magrittr::set_names()
+ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+Loading required package: caretEnsemble
+
+Attaching package: ‘caretEnsemble’
+
+The following object is masked from ‘package:ggplot2’:
+
+    autoplot
+
+Loading required package: ggthemes
+Loading required package: xtable
+Loading required package: tictoc
+Loading required package: R.utils
+Loading required package: R.oo
+Loading required package: R.methodsS3
+R.methodsS3 v1.8.2 (2022-06-13 22:00:14 UTC) successfully loaded. See ?R.methodsS3 for help.
+R.oo v1.25.0 (2022-06-12 02:20:02 UTC) successfully loaded. See ?R.oo for help.
+
+Attaching package: ‘R.oo’
+
+The following object is masked from ‘package:R.methodsS3’:
+
+    throw
+
+The following object is masked from ‘package:magrittr’:
+
+    equals
+
+The following objects are masked from ‘package:methods’:
+
+    getClasses, getMethods
+
+The following objects are masked from ‘package:base’:
+
+    attach, detach, load, save
+
+R.utils v2.12.2 (2022-11-11 22:00:03 UTC) successfully loaded. See ?R.utils for help.
+
+Attaching package: ‘R.utils’
+
+The following object is masked from ‘package:tidyr’:
+
+    extract
+
+The following object is masked from ‘package:magrittr’:
+
+    extract
+
+The following object is masked from ‘package:utils’:
+
+    timestamp
+
+The following objects are masked from ‘package:base’:
+
+    cat, commandArgs, getOption, isOpen, nullfile, parse, warnings
+
+[1] "###################################"
+[1] "3 RUN MODELS FOR PREDICTING REAL COMPONENT OF IMPEDANCE"
+[1] "###################################"
+[1] "Running bartMachine"
+<simpleError in tuneGrid[!duplicated(tuneGrid), , drop = FALSE]: incorrect number of dimensions>
+0.298 sec elapsed
+[1] "Running bayesglm"
+1.626 sec elapsed
+[1] "Running glm"
+0.873 sec elapsed
+[1] "Running binda"
+Something is wrong; all the Accuracy metric values are missing:
+    Accuracy       Kappa    
+ Min.   : NA   Min.   : NA  
+ 1st Qu.: NA   1st Qu.: NA  
+ Median : NA   Median : NA  
+ Mean   :NaN   Mean   :NaN  
+ 3rd Qu.: NA   3rd Qu.: NA  
+ Max.   : NA   Max.   : NA  
+ NA's   :3     NA's   :3    
+<simpleError: Stopping>
+0.806 sec elapsed
+[1] "Running blackboost"
+142.465 sec elapsed
+[1] "Running cforest"

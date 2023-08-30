@@ -15,7 +15,7 @@ legend_size = 3
 legend_title_color = "Black"
 
 
-drawAllPlots <- function(trainData, testData, typeData, out_dir) {
+drawAllPlots <- function(trainData, testData, out_dir) {
   
   # Process raw data
   process_data <- function(rawData){

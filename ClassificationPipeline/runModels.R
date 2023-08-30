@@ -34,10 +34,7 @@ runModels <- function(selected_Models, train_data, test_data, time_limit, number
     train_out = file.path(output_path, train_out_file)
     test_out = file.path(output_path, test_out_file)
     res_stats = file.path(output_path, stat_file)
-    
-    print(train_out)
-    print(test_out)
-    
+  
     
     if (num_mdls > 0){
       selected_Models = availableModels[(length(availableModels)-num_mdls):length(availableModels)]

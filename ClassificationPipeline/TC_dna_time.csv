@@ -1,0 +1,3 @@
+Model,Time1,Time2,Status
+bayesglm,1.237,0.0206166666666667,success
+glm,0.807,0.01345,success

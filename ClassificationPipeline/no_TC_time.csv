@@ -1,0 +1,4 @@
+Model,Time1,Time2,Status
+bayesglm,1.53,0.0255,success
+glm,0.897,0.01495,success
+blackboost,80.379,1.33965,success

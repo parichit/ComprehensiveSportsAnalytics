@@ -69,7 +69,7 @@ print("###################################")
 
 source("DataIO.R")
 
-out <- load_data(file.path(base_path, "data", input_file_name), upsample)
+out <- load_data(file.path(base_path, "data", input_file_name))
 train_data <- out[[1]]
 test_data <- out[[2]]
 test_data$target <- as.factor(test_data$target)
