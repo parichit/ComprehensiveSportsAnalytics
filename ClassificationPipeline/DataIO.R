@@ -19,10 +19,10 @@ read_data <- function(base_data_path){
 
   Inputdata = cbind("target"=as.factor(target), Inputdata)
   
-  set.seed(987)
-  Inputdata<-ROSE(target~.,data=Inputdata)$data
+  # set.seed(987)
+  # Inputdata<-ROSE(target~.,data=Inputdata)$data
 
-  print(table(Inputdata$target))
+  # print(table(Inputdata$target))
   
   Inputdata <- as.data.frame(Inputdata)
   
